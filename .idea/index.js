@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     function renderPeoplePaginator(count){
         const pages = Math.ceil(count/10);
-        const select = document.getElementById('pages');
+        const select = document.getElementById('page');
         for (let i=1; i<=pages; i++) {
             const option = document.createElement('option');
             option.innerText = i;
@@ -150,12 +150,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     })
 })
-// function hideFunction() {
-//     const x = document.getElementById('hideDIV');
-//     if (x.style.display === 'none'){
-//         x.style.display = 'block'
-//     }
-//     else{
-//         x.style.display = 'none'
-//     }
-// }
+function myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}

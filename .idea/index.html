@@ -2,19 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>SW API</title>
     <link href="style.css" rel="stylesheet">
+    <link href="nav_bar_style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="index.js"></script>
 </head>
+
 <body>
-    <div class="header">
+    <div class="topnav" id="myTopnav">
+        <a href="#home" class="active">Home</a>
+        <a href="#page">Starships</a>
+        <a href="#contact">Contact</a>
+        <a href="#about">About</a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+
+    <div id="home" class="header">
         <header>
             <p> STAR WARS</p><p style="font-size: 10vh;">Starships</p>
         </header>
     </div>
     <div class="page-selector">
         <label for="page">Page:</label>
-        <select id="pages">
+        <select id="page">
         </select>
     </div>
 

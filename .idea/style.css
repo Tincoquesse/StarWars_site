@@ -8,12 +8,14 @@ html {
 }
 .header{
     text-align: center;
-    font-size: 12vh;
+    font-size: 13vh;
     color: yellow;
     margin-top: 0;
     border-radius: 10px;
     font-family: 'Star Jedi';
-    inline-size: 1;
+    letter-spacing: 10px;
+    /*inline-size: 1;*/
+    padding: 10px;
 
 }
 #people-container{
@@ -23,16 +25,16 @@ html {
     flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
-    flex-grow: 3;
-    gap: 5px;
+    flex-grow: 4;
+    gap: 20px;
 }
 .container-item{
     background:rgba(200,200,200, 0.8);
     display: inline-block;
-    border: 1px solid saddlebrown;
+    border: 1px solid yellow;
     padding: 1%;
     border-radius: 5px;
-    width: 30%;
+    width: 28%;
 }
 .button-blank{
     /*background-color: white;*/
@@ -73,4 +75,8 @@ html {
     color: yellow;
     font-size: 5vh;
     font-family: 'Star Jedi';
+}
+#page{
+    width: 10vh;
+    height: 5vh;
 }
