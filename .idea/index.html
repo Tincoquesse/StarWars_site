@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SW API</title>
+    <link href="style.css" rel="stylesheet">
+    <script src="index.js"></script>
+</head>
+<body>
+    <div class="header">
+        <header>
+            <p> STAR WARS</p><p style="font-size: 10vh;">Starships</p>
+        </header>
+    </div>
+    <div class="page-selector">
+        <label for="page">Page:</label>
+        <select id="pages">
+        </select>
+    </div>
+
+    <div class="container">
+        <div id="people-container"></div>
+    </div>
+    <div align="center">
+        <button id="chameleon-button" class="button-blank">
+            I'm chameleon
+        </button>
+
+        <button id="grey-button" class=button-grey">
+            I'm grey
+        </button>
+    </div>
+    <div align="center" class="mouse-position">
+        <label for="mouse-position-x">X</label>
+        <input type="text" id="mouse-position-x" class="mouse-position-input" readonly>
+        <label for="mouse-position-y">Y</label>
+        <input type="text" id="mouse-position-y" class="mouse-position-input" readonly>
+    </div>
+
+    <button id="toggle-button" class="button-basic button-blank">
+        Toggle me!
+    </button>
+
+    <span id="toggle-content">
+            Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
+        </span>
+</div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+@import url(//db.onlinewebfonts.com/c/0c724f6aa457310440cf8949c615cbd7?family=Star+Jedi);
+html {
+    background: url("sw_bg2.jpg")no-repeat center center fixed;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+.header{
+    text-align: center;
+    font-size: 12vh;
+    color: yellow;
+    margin-top: 0;
+    border-radius: 10px;
+    font-family: 'Star Jedi';
+    inline-size: 1;
+
+}
+#people-container{
+    /*border: 1px solid lightsalmon;*/
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-grow: 3;
+    gap: 5px;
+}
+.container-item{
+    background:rgba(200,200,200, 0.8);
+    display: inline-block;
+    border: 1px solid saddlebrown;
+    padding: 1%;
+    border-radius: 5px;
+    width: 30%;
+}
+.button-blank{
+    /*background-color: white;*/
+}
+.button-green{
+    background-color: green;
+}
+.button-yellow{
+    background-color: yellow;
+}
+.button-red{
+    background-color: red;
+}
+.button-grey{
+    background-color: grey;
+}
+.button-grey-blank{
+}
+#chameleon-button{
+    padding: 20px 40px;
+    position: center;
+}
+#grey-button{
+    padding: 20px 40px;
+}
+.mouse-position{
+    padding: 30px;
+}
+.hide{
+    /*visibility: hidden;*/
+    display: none;
+}
+.hidden {
+    visibility: hidden;
+}
+.page-selector{
+    margin-left: 5%;
+    color: yellow;
+    font-size: 5vh;
+    font-family: 'Star Jedi';
+}
