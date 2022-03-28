@@ -44,14 +44,29 @@ document.addEventListener('DOMContentLoaded', (event) => {
             renderPeoplePaginator(response['count'])
             renderPeopleList(response['results']);
         });
-    function renderPeopleList(people){
-        const peopleHtmlElems = people.map((person, index) => getPersonLayout(person, index))
-        const peopleList = document.querySelector('#people-container');
-        peopleHtmlElems.forEach(elem => peopleList.append(elem));
+
+    function renderPeopleList(people, nextRoll){
+        if(nextRoll){
+            const peopleHtmlElems = people.map((person, index) => getPersonLayout(person, index))
+            const peopleList = document.querySelector('#people-container');
+            removeAllChildNodes(peopleList);
+            peopleHtmlElems.forEach(elem => peopleList.append(elem));
+        }
+        else {
+            const peopleHtmlElems = people.map((person, index) => getPersonLayout(person, index))
+            const peopleList = document.querySelector('#people-container');
+            peopleHtmlElems.forEach(elem => peopleList.append(elem));
+        }
     }
+    function removeAllChildNodes(parent) {
+        while (parent.firstChild) {
+            parent.removeChild(parent.firstChild);
+        }
+    }
+
     function getPersonLayout(person, index){
         const root = getPersonRoot();
-        index+= true;
+        index++;
         root.append(getPersonProp('', person['name']));
         root.append(getPersonProp('Model: ', person['mode'], index));
         root.append(getPersonProp('Cost: ', person['cost_in_credits'], index));
@@ -76,7 +91,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     function getPersonButton(index){
         const button = document.createElement('button');
         button.id = `person-details-button-${index}`;
-        button.innerText = 'Collapse';
+        button.innerText = 'Details';
         button.addEventListener('click', () => {
             const props = document.querySelectorAll(`.person-toggle-prop-${index}`);
             props.forEach(prop => {
@@ -103,52 +118,53 @@ document.addEventListener('DOMContentLoaded', (event) => {
             fetch(`http://swapi.dev/api/starships/?page=${event.target.value}`)
                 .then(response => response.json())
                 .then(response => {
+                    renderPeopleList(response['results'], true);
+                    select.removeChild(select.children[0-3]);
                     renderPeoplePaginator(response['count']);
-                    renderPeopleList(response['results']);
                 });
 
         })
 
     }
-    const chameleonButton = document.getElementById('chameleon-button');
-    chameleonButton.addEventListener("click", () => {
-
-        if(chameleonButton.classList.contains('button-blank')){
-            chameleonButton.classList.replace('button-blank', 'button-green')
-        }
-        else if (chameleonButton.classList.contains('button-green')) {
-            chameleonButton.classList.replace('button-green', 'button-yellow')
-        }
-        else if (chameleonButton.classList.contains('button-yellow')) {
-            chameleonButton.classList.replace('button-yellow', 'button-red')
-        }
-        else if (chameleonButton.classList.contains('button-red')) {
-            chameleonButton.classList.replace('button-red', 'button-blank')
-        }
-    })
-    const greyButton = document.getElementById('grey-button');
-    greyButton.addEventListener("mouseover", ()=> {
-    greyButton.classList.add('button-grey')
-    })
-    greyButton.addEventListener("mouseout", ()=> {
-        greyButton.classList.remove('button-grey')
-    })
-
-
-    document.addEventListener("mousemove", (event) =>{
-    document.getElementById('mouse-position-x').value=event.x;
-    document.getElementById('mouse-position-y').value=event.y;
-    })
-
-    const toggleButton = document.getElementById('toggle-button');
-    const toggleContent = document.getElementById('toggle-content');
-    toggleButton.addEventListener('click', () => {
-        if (toggleContent.classList.contains('hide')) {
-            toggleContent.classList.remove('hide');
-        } else {
-            toggleContent.classList.add('hide');
-        }
-    })
+    // const chameleonButton = document.getElementById('chameleon-button');
+    // chameleonButton.addEventListener("click", () => {
+    //
+    //     if(chameleonButton.classList.contains('button-blank')){
+    //         chameleonButton.classList.replace('button-blank', 'button-green')
+    //     }
+    //     else if (chameleonButton.classList.contains('button-green')) {
+    //         chameleonButton.classList.replace('button-green', 'button-yellow')
+    //     }
+    //     else if (chameleonButton.classList.contains('button-yellow')) {
+    //         chameleonButton.classList.replace('button-yellow', 'button-red')
+    //     }
+    //     else if (chameleonButton.classList.contains('button-red')) {
+    //         chameleonButton.classList.replace('button-red', 'button-blank')
+    //     }
+    // })
+    // const greyButton = document.getElementById('grey-button');
+    // greyButton.addEventListener("mouseover", ()=> {
+    // greyButton.classList.add('button-grey')
+    // })
+    // greyButton.addEventListener("mouseout", ()=> {
+    //     greyButton.classList.remove('button-grey')
+    // })
+    //
+    //
+    // document.addEventListener("mousemove", (event) =>{
+    // document.getElementById('mouse-position-x').value=event.x;
+    // document.getElementById('mouse-position-y').value=event.y;
+    // })
+    //
+    // const toggleButton = document.getElementById('toggle-button');
+    // const toggleContent = document.getElementById('toggle-content');
+    // toggleButton.addEventListener('click', () => {
+    //     if (toggleContent.classList.contains('hide')) {
+    //         toggleContent.classList.remove('hide');
+    //     } else {
+    //         toggleContent.classList.add('hide');
+    //     }
+    // })
 })
 function myFunction() {
     var x = document.getElementById("myTopnav");

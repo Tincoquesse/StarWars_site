@@ -1,10 +1,11 @@
 @import url(//db.onlinewebfonts.com/c/0c724f6aa457310440cf8949c615cbd7?family=Star+Jedi);
 html {
-    background: url("sw_bg2.jpg")no-repeat center center fixed;
+    background: url("../images/sw_bg2.jpg")no-repeat center center fixed;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
+    scroll-behavior: smooth
 }
 .header{
     text-align: center;
@@ -35,6 +36,11 @@ html {
     padding: 1%;
     border-radius: 5px;
     width: 28%;
+
+}
+button{
+    border-radius: 2px;
+    background-color: grey;
 }
 .button-blank{
     /*background-color: white;*/
@@ -73,10 +79,17 @@ html {
 .page-selector{
     margin-left: 5%;
     color: yellow;
-    font-size: 5vh;
+    font-size: 4vh;
     font-family: 'Star Jedi';
+    border-radius: 5px;
 }
 #page{
+
     width: 10vh;
     height: 5vh;
+    border-radius: 5px;
+    font-size: 2.5vh ;
+    text-align: center;
+    font: bold;
+
 }
