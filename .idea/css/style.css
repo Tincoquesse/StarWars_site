@@ -10,7 +10,7 @@ html {
 .header{
     text-align: center;
     font-size: 13vh;
-    color: yellow;
+    color: gold;
     margin-top: 0;
     border-radius: 10px;
     font-family: 'Star Jedi';
@@ -32,15 +32,33 @@ html {
 .container-item{
     background:rgba(200,200,200, 0.8);
     display: inline-block;
-    border: 1px solid yellow;
+    border: 1px solid gold;
     padding: 1%;
     border-radius: 5px;
-    width: 28%;
+    width: 23%;
+    font-size: 3.5vh;
+    font-family:fantasy;
+}
+.container-item:hover {
 
 }
+
 button{
-    border-radius: 2px;
-    background-color: grey;
+    border-radius: 5px;
+    border: 1px solid black;
+    background-color: rgba(255,255,255, 0.4);
+    font-size: 3.5vh;
+    color: black;
+    cursor: pointer;
+    transition: all 0.2s ease 0s;
+    box-shadow: grey 2px 2px;
+
+}
+button:hover{
+    color: goldenrod;
+    background-color: black;
+
+    transform: translateY(2px);
 }
 .button-blank{
     /*background-color: white;*/
@@ -78,18 +96,26 @@ button{
 }
 .page-selector{
     margin-left: 5%;
-    color: yellow;
+    color: gold;
     font-size: 4vh;
     font-family: 'Star Jedi';
     border-radius: 5px;
 }
 #page{
-
     width: 10vh;
     height: 5vh;
     border-radius: 5px;
     font-size: 2.5vh ;
     text-align: center;
     font: bold;
-
+}
+.about{
+    font-family: 'Star Jedi';
+    color: white;
+    text-align: center;
+}
+h1{
+    color: gold;
+    font-size: 10vh;
+    letter-spacing: 20px;
 }
