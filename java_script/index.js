@@ -41,20 +41,20 @@ document.addEventListener('DOMContentLoaded', (event) => {
         .then(response => response.json())
         .then(response => {
             console.log(response['results']);
-            renderPeoplePaginator(response['count'])
-            renderPeopleList(response['results']);
+            renderStarshipsPaginator(response['count'])
+            renderStarshipsList(response['results']);
         });
 
-    function renderPeopleList(people, nextRoll){
+    function renderStarshipsList(starships, nextRoll){
         if(nextRoll){
-            const peopleHtmlElems = people.map((person, index) => getPersonLayout(person, index))
-            const peopleList = document.querySelector('#people-container');
-            removeAllChildNodes(peopleList);
-            peopleHtmlElems.forEach(elem => peopleList.append(elem));
+            const starshipsHtmlElems = starships.map((starship, index) => getStarshipLayout(starship, index))
+            const starshipsList = document.querySelector('#starships-container');
+            removeAllChildNodes(starshipsList);
+            starshipsHtmlElems.forEach(elem => starshipsList.append(elem));
         }
         else {
-            const peopleHtmlElems = people.map((person, index) => getPersonLayout(person, index))
-            const peopleList = document.querySelector('#people-container');
+            const peopleHtmlElems = starships.map((person, index) => getStarshipLayout(person, index))
+            const peopleList = document.querySelector('#starships-container');
             peopleHtmlElems.forEach(elem => peopleList.append(elem));
         }
     }
@@ -64,48 +64,49 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     }
 
-    function getPersonLayout(person, index){
-        const root = getPersonRoot();
+    function getStarshipLayout(person, index){
+        const root = getStarshipRoot();
         index++;
-        root.append(getPersonProp('', person['name']));
-        root.append(getPersonProp('Model: ', person['mode'], index));
-        root.append(getPersonProp('Cost: ', person['cost_in_credits'], index));
-        root.append(getPersonProp('Manufacturer: ', person['manufacturer'], index));
-        root.append(getPersonButton(index));
+        root.append(getStarshipProp('', person['name']));
+        root.append(getStarshipProp('Model: ', person['model'], index));
+        root.append(getStarshipProp('Cost: ', person['cost_in_credits'], index));
+        root.append(getStarshipProp('Manufacturer: ', person['manufacturer'], index));
+        root.append(getStarshipButton(index));
         return root;
     }
-    function getPersonRoot(){
+    function getStarshipRoot(){
         const root = document.createElement('div');
         root.classList.add('container-item');
         return root;
     }
-    function getPersonProp(title, property, index){
+    function getStarshipProp(title, property, index){
         const prop = document.createElement('div');
         prop.classList.add('card-title');
         if(index){
-            prop.classList.add(`person-toggle-prop-${index}`);
+            prop.classList.add(`starship-toggle-prop-${index}`);
+            prop.classList.add('hidden')
         }
         prop.innerText = `${title}${property}`;
         return prop;
     }
-    function getPersonButton(index){
+    function getStarshipButton(index){
         const button = document.createElement('button');
-        button.id = `person-details-button-${index}`;
+        button.id = `starship-details-button-${index}`;
         button.innerText = 'Details';
         button.addEventListener('click', () => {
-            const props = document.querySelectorAll(`.person-toggle-prop-${index}`);
+            const props = document.querySelectorAll(`.starship-toggle-prop-${index}`);
             props.forEach(prop => {
                 if(prop.classList.contains('hidden')){
-                    prop.classList.remove('hidden');
+                    prop.classList.replace('hidden', 'visible')
                 }else{
-                    prop.classList.add('hidden');
+                    prop.classList.replace('visible', 'hidden')
                 }
             });
         });
         return button;
     }
 
-    function renderPeoplePaginator(count){
+    function renderStarshipsPaginator(count){
         const pages = Math.ceil(count/10);
         const select = document.getElementById('page');
         for (let i=1; i<=pages; i++) {
@@ -118,9 +119,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
             fetch(`http://swapi.dev/api/starships/?page=${event.target.value}`)
                 .then(response => response.json())
                 .then(response => {
-                    renderPeopleList(response['results'], true);
+                    renderStarshipsList(response['results'], true);
                     select.removeChild(select.children[0-3]);
-                    renderPeoplePaginator(response['count']);
+                    renderStarshipsPaginator(response['count']);
                 });
 
         })
