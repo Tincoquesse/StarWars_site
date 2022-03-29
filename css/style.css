@@ -25,13 +25,12 @@ html {
     flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
-    flex-grow: 3;
+    /*flex-grow: 3;*/
     gap: 20px;
 
-
 }
-.container-item{
-    background:rgba(200,200,200, 0.75);
+.container-item {
+    background: rgba(200, 200, 200, 0.75);
     display: inline-block;
     border: 1px solid gold;
     padding: 1%;
@@ -39,8 +38,7 @@ html {
     width: 23%;
     font-size: 3vh;
     font-family: fantasy;
-
-
+    line-height: 1.4;
 }
 .container-item:hover {
     background:rgba(200,200,200, 0.9);
@@ -63,8 +61,8 @@ button:hover{
     background-color: black;
     transform: translateY(2px);
 }
-.card-title{
-
+.card-title {
+    text-align: inherit;
 }
 .button-blank{
     /*background-color: white;*/
@@ -121,7 +119,6 @@ button:hover{
 
 }
 .about{
-
     font-family: 'Star Jedi';
     color: white;
     text-align: center;
