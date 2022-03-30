@@ -67,38 +67,56 @@ document.addEventListener('DOMContentLoaded', (event) => {
     function getStarshipLayout(person, index){
         const root = getStarshipRoot();
         index++;
+        // const response;
+        // response.prop1.prop2.prop3;
+        // response['prop1']['prop2']['prop3']
+
         root.append(getStarshipProp('', person['name']));
+        root.append(getFollowIcon(index))
         root.append(getStarshipProp('Model: ', person['model'], index));
         root.append(getStarshipProp('Cost: ', person['cost_in_credits'], index));
         root.append(getStarshipProp('Manufacturer: ', person['manufacturer'], index));
         root.append(getStarshipButton(index));
         return root;
     }
-    function getStarshipRoot(){
+
+    function getStarshipRoot() {
         const root = document.createElement('div');
         root.classList.add('container-item');
         return root;
     }
-    function getStarshipProp(title, property, index){
+
+    function getStarshipProp(title, property, index) {
         const prop = document.createElement('div');
         prop.classList.add('card-title');
-        if(index){
+        if (index) {
             prop.classList.add(`starship-toggle-prop-${index}`);
             prop.classList.add('hide')
         }
         prop.innerText = `${title}${property}`;
         return prop;
     }
-    function getStarshipButton(index){
+
+    function getFollowIcon(index) {
+        const prop = document.createElement('select');
+        prop.classList.add('icon-not-used');
+        if (index) {
+            prop.classList.add(`icon-${index}`);
+        }
+        return prop
+    }
+
+    function getStarshipButton(index) {
         const button = document.createElement('button');
+
         button.id = `starship-details-button-${index}`;
         button.innerText = 'Details';
         button.addEventListener('click', () => {
             const props = document.querySelectorAll(`.starship-toggle-prop-${index}`);
             props.forEach(prop => {
-                if(prop.classList.contains('hide')){
+                if (prop.classList.contains('hide')) {
                     prop.classList.replace('hide', 'visible')
-                }else{
+                } else {
                     prop.classList.replace('visible', 'hide')
                 }
             });
@@ -106,22 +124,25 @@ document.addEventListener('DOMContentLoaded', (event) => {
         return button;
     }
 
-    function renderStarshipsPaginator(count){
-        const pages = Math.ceil(count/10);
+    function renderStarshipsPaginator(count, page = 1) {
+        const pages = Math.ceil(count / 10);
         const select = document.getElementById('page');
-        for (let i=1; i<=pages; i++) {
+        for (let i = 1; i <= pages; i++) {
             const option = document.createElement('option');
             option.innerText = i;
             option.value = i;
             select.append(option);
         }
-        select.addEventListener('change', (event) =>{
+        console.log(page)
+        select.value = page;
+        select.addEventListener('change', (event) => {
             fetch(`http://swapi.dev/api/starships/?page=${event.target.value}`)
                 .then(response => response.json())
                 .then(response => {
+                    const page = event.target.value;
                     renderStarshipsList(response['results'], true);
-                    select.removeChild(select.children[0-3]);
-                    renderStarshipsPaginator(response['count']);
+                    select.innerText = '';
+                    renderStarshipsPaginator(response['count'], page);
                 });
 
         })
@@ -167,7 +188,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
     //     }
     // })
 })
-function myFunction() {
+
+function navFunction() {
     const x = document.getElementById("myTopnav");
     if (x.className === "topnav") {
         x.className += " responsive";

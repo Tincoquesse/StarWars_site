@@ -1,13 +1,19 @@
+
 @import url(//db.onlinewebfonts.com/c/0c724f6aa457310440cf8949c615cbd7?family=Star+Jedi);
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    background: url("../images/sw_bg2.jpg")no-repeat center center fixed;
+    background: url("../images/sw_bg2.jpg") no-repeat center center fixed;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     scroll-behavior: smooth
 }
-.header{
+
+.header {
     text-align: center;
     justify-content: center;
     font-size: 13vh;
@@ -17,7 +23,7 @@ body {
     font-family: 'Star Jedi';
     letter-spacing: 10px;
     /*inline-size: 1;*/
-    padding: 10px;
+    padding: 2px;
 }
 .header-light{
     color: midnightblue;
@@ -58,24 +64,33 @@ button{
     box-shadow: grey 2px 2px;
 
 }
-button:hover{
+
+button:hover {
     color: goldenrod;
     background-color: black;
     transform: translateY(2px);
 }
+
 .card-title {
-    text-align: inherit;
 }
-.button-blank{
+
+.icon-not-used {
+    background-color: darkslateblue;
+}
+
+.button-blank {
     /*background-color: white;*/
 }
-.button-green{
+
+.button-green {
     background-color: green;
 }
-.button-yellow{
+
+.button-yellow {
     background-color: yellow;
 }
-.button-red{
+
+.button-red {
     background-color: red;
 }
 .button-grey{
@@ -112,23 +127,33 @@ button:hover{
     font-family: 'Star Jedi';
     border-radius: 5px;
 }
-#page{
+
+#page {
     width: 10vh;
     height: 5vh;
     border-radius: 5px;
-    font-size: 2.5vh ;
+    font-size: 2.5vh;
     text-align: center;
 
 }
-.about{
+
+.about {
     font-family: 'Star Jedi';
     color: white;
     text-align: center;
     justify-items: center;
+    padding: 20vh;
 }
-h1{
+
+h1 {
     /*text-align: center;*/
     color: gold;
     font-size: 10vh;
     letter-spacing: 20px;
+}
+
+.about-box {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    height: 20vh;
 }
