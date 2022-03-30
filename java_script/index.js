@@ -54,8 +54,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
         else {
             const peopleHtmlElems = starships.map((person, index) => getStarshipLayout(person, index))
-            const peopleList = document.querySelector('#starships-container');
-            peopleHtmlElems.forEach(elem => peopleList.append(elem));
+            const starshipsList = document.querySelector('#starships-container');
+            peopleHtmlElems.forEach(elem => starshipsList.append(elem));
         }
     }
     function removeAllChildNodes(parent) {
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         prop.classList.add('card-title');
         if(index){
             prop.classList.add(`starship-toggle-prop-${index}`);
-            prop.classList.add('hidden')
+            prop.classList.add('hide')
         }
         prop.innerText = `${title}${property}`;
         return prop;
@@ -96,10 +96,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
         button.addEventListener('click', () => {
             const props = document.querySelectorAll(`.starship-toggle-prop-${index}`);
             props.forEach(prop => {
-                if(prop.classList.contains('hidden')){
-                    prop.classList.replace('hidden', 'visible')
+                if(prop.classList.contains('hide')){
+                    prop.classList.replace('hide', 'visible')
                 }else{
-                    prop.classList.replace('visible', 'hidden')
+                    prop.classList.replace('visible', 'hide')
                 }
             });
         });
@@ -174,4 +174,13 @@ function myFunction() {
     } else {
         x.className = "topnav";
     }
+}
+
+function lightMode() {
+    const element = document.body;
+    element.classList.toggle("light_on");
+    const element2 = document.querySelector('#home')
+    element2.classList.toggle("header-light");
+
+
 }

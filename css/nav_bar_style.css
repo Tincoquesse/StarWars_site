@@ -19,7 +19,6 @@ body {
     padding: 14px 16px;
     text-decoration: none;
     font-size: 3vh;
-
 }
 
 .topnav a:hover {
@@ -35,7 +34,26 @@ body {
 .topnav .icon {
     display: none;
 }
+.light_off{
+    float: right;
+    /*display: block;*/
+    padding: 14px 16px;
+    height: 8vh;
+    margin-top: 10vh;
+}
+.light_off:hover{
+    cursor: pointer;
+    transform: translateY(5px);
+}
 
+.light_on{
+    background: url("../images/sw_bg.jpg")no-repeat center center fixed;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    scroll-behavior: smooth
+}
 @media screen and (max-width: 600px) {
     .topnav a:not(:first-child) {display: none;}
     .topnav a.icon {
