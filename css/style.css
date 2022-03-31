@@ -75,9 +75,25 @@ button:hover {
 }
 
 .icon-not-used {
-    background-color: darkslateblue;
+    height: 4vh;
+    width: 4vh;
+    background: url("../images/follow_off.png");
+    float: right;
+    margin-top: 0;
+    background-size: cover;
+    cursor: pointer;
+    text-decoration: none;
 }
-
+.icon-used {
+    height: 4vh;
+    width: 4vh;
+    background: url("../images/follow_on.png");
+    float: right;
+    margin-top: 0;
+    background-size: cover;
+    cursor: pointer;
+    text-decoration: none;
+}
 .button-blank {
     /*background-color: white;*/
 }
@@ -155,5 +171,6 @@ h1 {
 .about-box {
     background-color: rgba(255, 255, 255, 0.2);
     border-radius: 10px;
-    height: 20vh;
+    padding: 5vh;
+
 }

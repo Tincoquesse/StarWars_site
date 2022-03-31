@@ -51,11 +51,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
             const starshipsList = document.querySelector('#starships-container');
             removeAllChildNodes(starshipsList);
             starshipsHtmlElems.forEach(elem => starshipsList.append(elem));
+
         }
         else {
             const peopleHtmlElems = starships.map((person, index) => getStarshipLayout(person, index))
             const starshipsList = document.querySelector('#starships-container');
             peopleHtmlElems.forEach(elem => starshipsList.append(elem));
+
         }
     }
     function removeAllChildNodes(parent) {
@@ -71,8 +73,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
         // response.prop1.prop2.prop3;
         // response['prop1']['prop2']['prop3']
 
+        root.append(getFollowIcon(index, person['name']))
         root.append(getStarshipProp('', person['name']));
-        root.append(getFollowIcon(index))
         root.append(getStarshipProp('Model: ', person['model'], index));
         root.append(getStarshipProp('Cost: ', person['cost_in_credits'], index));
         root.append(getStarshipProp('Manufacturer: ', person['manufacturer'], index));
@@ -96,19 +98,33 @@ document.addEventListener('DOMContentLoaded', (event) => {
         prop.innerText = `${title}${property}`;
         return prop;
     }
+    pageGlobal = 1;
 
-    function getFollowIcon(index) {
-        const prop = document.createElement('select');
-        prop.classList.add('icon-not-used');
-        if (index) {
-            prop.classList.add(`icon-${index}`);
-        }
-        return prop
+    function getFollowIcon(index, person) {
+        const str = person;
+        const key = str.replace(/\s/g, '')
+        const value = 'liked';
+        const img = document.createElement('div');
+        img.classList.add('icon-not-used');
+        img.id = value;
+        img.classList.add(key);
+        img.addEventListener('click', () =>{
+            if (img.classList.contains('icon-not-used')){
+                img.classList.replace('icon-not-used', 'icon-used');
+                localStorage.setItem(key, value);
+                console.log(localStorage)
+            }
+            else{
+                img.classList.replace('icon-used', 'icon-not-used');
+                localStorage.removeItem(key);
+                console.log(localStorage)
+            }
+        })
+        return img
     }
 
     function getStarshipButton(index) {
         const button = document.createElement('button');
-
         button.id = `starship-details-button-${index}`;
         button.innerText = 'Details';
         button.addEventListener('click', () => {
@@ -124,6 +140,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         return button;
     }
 
+
     function renderStarshipsPaginator(count, page = 1) {
         const pages = Math.ceil(count / 10);
         const select = document.getElementById('page');
@@ -133,18 +150,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
             option.value = i;
             select.append(option);
         }
-        console.log(page)
         select.value = page;
         select.addEventListener('change', (event) => {
             fetch(`http://swapi.dev/api/starships/?page=${event.target.value}`)
                 .then(response => response.json())
                 .then(response => {
-                    const page = event.target.value;
+                    page = event.target.value;
                     renderStarshipsList(response['results'], true);
                     select.innerText = '';
                     renderStarshipsPaginator(response['count'], page);
                 });
-
+            pageGlobal = event.target.value;
         })
 
     }
