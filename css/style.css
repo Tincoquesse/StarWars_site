@@ -20,7 +20,7 @@ body {
     color: gold;
     margin-top: 0;
     border-radius: 10px;
-    font-family: 'Star Jedi';
+    font-family: 'Star Jedi', Arial;
     letter-spacing: 10px;
     /*inline-size: 1;*/
     padding: 2px;
@@ -132,15 +132,17 @@ button:hover {
     visibility: hidden;
     font-family: Arial, serif;
 }
-.visible{
+
+.visible {
     font-family: Arial, serif;
 
 }
-.page-selector{
+
+.page-selector {
     margin-left: 5%;
     color: gold;
     font-size: 4vh;
-    font-family: 'Star Jedi';
+    font-family: 'Star Jedi', Arial;
     border-radius: 5px;
 }
 
@@ -154,7 +156,7 @@ button:hover {
 }
 
 .about {
-    font-family: 'Star Jedi';
+    font-family: 'Star Jedi', Arial;
     color: white;
     text-align: center;
     justify-items: center;

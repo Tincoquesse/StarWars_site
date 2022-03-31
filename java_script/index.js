@@ -40,9 +40,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
     fetch(`http://swapi.dev/api/starships/?page=1`)
         .then(response => response.json())
         .then(response => {
-            console.log(response['results']);
+            // console.log(response['results']);
             renderStarshipsPaginator(response['count'])
             renderStarshipsList(response['results']);
+            console.log(localStorage);
         });
 
     function renderStarshipsList(starships, nextRoll){
@@ -73,7 +74,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         // response.prop1.prop2.prop3;
         // response['prop1']['prop2']['prop3']
 
-        root.append(getFollowIcon(index, person['name']))
+        root.append(getFollowIcon(person['name']))
         root.append(getStarshipProp('', person['name']));
         root.append(getStarshipProp('Model: ', person['model'], index));
         root.append(getStarshipProp('Cost: ', person['cost_in_credits'], index));
@@ -98,23 +99,23 @@ document.addEventListener('DOMContentLoaded', (event) => {
         prop.innerText = `${title}${property}`;
         return prop;
     }
+
     pageGlobal = 1;
 
-    function getFollowIcon(index, person) {
-        const str = person;
-        const key = str.replace(/\s/g, '')
-        const value = 'liked';
+    function getFollowIcon(person) {
+        const currentdate = new Date();
+        const key = person.replace(/\s/g, '')
+        const value = currentdate.toLocaleString();
         const img = document.createElement('div');
-        img.classList.add('icon-not-used');
+        localStorage.getItem(key) ? img.classList.add('icon-used') : img.classList.add('icon-not-used');
         img.id = value;
         img.classList.add(key);
-        img.addEventListener('click', () =>{
-            if (img.classList.contains('icon-not-used')){
+        img.addEventListener('click', () => {
+            if (img.classList.contains('icon-not-used')) {
                 img.classList.replace('icon-not-used', 'icon-used');
                 localStorage.setItem(key, value);
                 console.log(localStorage)
-            }
-            else{
+            } else {
                 img.classList.replace('icon-used', 'icon-not-used');
                 localStorage.removeItem(key);
                 console.log(localStorage)
