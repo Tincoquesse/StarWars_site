@@ -100,28 +100,23 @@ document.addEventListener('DOMContentLoaded', (event) => {
         return prop;
     }
 
-    pageGlobal = 1;
-
     function getFollowIcon(person) {
-        const currentdate = new Date();
         const key = person.replace(/\s/g, '')
-        const value = currentdate.toLocaleString();
-        const img = document.createElement('div');
-        localStorage.getItem(key) ? img.classList.add('icon-used') : img.classList.add('icon-not-used');
-        img.id = value;
-        img.classList.add(key);
-        img.addEventListener('click', () => {
-            if (img.classList.contains('icon-not-used')) {
-                img.classList.replace('icon-not-used', 'icon-used');
+        const value = new Date().toLocaleString();
+        const elem = document.createElement('div');
+        localStorage.getItem(key) ? elem.classList.add('icon-used') : elem.classList.add('icon-not-used');
+        elem.addEventListener('click', () => {
+            if (elem.classList.contains('icon-not-used')) {
+                elem.classList.replace('icon-not-used', 'icon-used');
                 localStorage.setItem(key, value);
                 console.log(localStorage)
             } else {
-                img.classList.replace('icon-used', 'icon-not-used');
+                elem.classList.replace('icon-used', 'icon-not-used');
                 localStorage.removeItem(key);
                 console.log(localStorage)
             }
         })
-        return img
+        return elem
     }
 
     function getStarshipButton(index) {
@@ -161,7 +156,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     select.innerText = '';
                     renderStarshipsPaginator(response['count'], page);
                 });
-            pageGlobal = event.target.value;
         })
 
     }
